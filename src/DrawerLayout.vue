@@ -132,12 +132,15 @@
                 const movePixel = handle 
                     ? Math.ceil(width * moveRate) - handleWidth
                     : Math.ceil(width * moveRate)
+                const translateX = handle
+                    ? Math.ceil(pos * moveRate) - handleWidth
+                    : Math.ceil(pos * moveRate)
 
                 return {
                     zIndex: zIndex,
                     width: `${width}px`,
                     [reverse ? 'right' : 'left']: `-${movePixel}px`,
-                    transform: `translate3d(${reverse ? '-' : ''}${movePixel}px,0,0)`
+                    transform: `translate3d(${reverse ? '-' : ''}${translateX}px,0,0)`
                 };
             },
             contentStyle() {
