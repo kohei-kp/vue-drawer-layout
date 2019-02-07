@@ -81,6 +81,14 @@
             reverse: {
                 type: Boolean,
                 default: false
+            },
+            handle: {
+                type: Boolean,
+                default: false
+            },
+            handleWidth: {
+                type: Number,
+                default: 20
             }
         },
         data() {
@@ -95,6 +103,7 @@
         },
         methods: {
             toggle(visible) {
+                console.log(this)
                 if (visible === undefined) visible = !this.visible;
                 this.visible = visible;
                 this.pos = visible ? this.width : 0;
