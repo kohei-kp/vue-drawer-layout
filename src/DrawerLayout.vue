@@ -103,7 +103,6 @@
         },
         methods: {
             toggle(visible) {
-                console.log(this)
                 if (visible === undefined) visible = !this.visible;
                 this.visible = visible;
                 this.pos = visible ? this.width : 0;
@@ -128,12 +127,17 @@
                 return {'moving': moving, 'will-change': willChange};
             },
             drawerStyle() {
-                const {zIndex, width, moveRate, pos, reverse} = this;
+                const {zIndex, width, moveRate, pos, reverse, handle, handleWidth} = this;
+
+                const movePixel = handle 
+                    ? Math.ceil(width * moveRate) - handleWidth
+                    : Math.ceil(width * moveRate)
+
                 return {
                     zIndex: zIndex,
                     width: `${width}px`,
-                    [reverse ? 'right' : 'left']: `-${Math.ceil(width * moveRate)}px`,
-                    transform: `translate3d(${reverse ? '-' : ''}${Math.ceil(pos * moveRate)}px,0,0)`
+                    [reverse ? 'right' : 'left']: `-${movePixel}px`,
+                    transform: `translate3d(${reverse ? '-' : ''}${movePixel}px,0,0)`
                 };
             },
             contentStyle() {
